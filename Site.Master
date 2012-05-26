@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JobTracker.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <noscript>
+        <meta http-equiv="Refresh" content="1;URL=NoJavascript.htm" />
+    </noscript>
+    
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/jobtracker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Lib/ext-js/resources/css/ext-all.css" />  
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+    <script type="text/javascript" src="Lib/ext-js/ext-all.js"></script>
+    <script type="text/javascript" src="Lib/xml2json/jquery.xml2json.js"></script>
+    <script type="text/javascript" src="Scripts/utils/utils.js"></script>
+    <script type="text/javascript" src="Scripts/jobtracker/app.js"></script>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bgimage">
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1 style="font-size:32px">
+                    All Star Plumbing Job Tracker
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/Account/Login.aspx"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink" style="padding-left:50px;width:500px">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Customers.aspx" Text="Manage Customers"/>
+                        <asp:MenuItem NavigateUrl="~/Jobs.aspx" Text="Manage Jobs"/>
+                        <asp:MenuItem NavigateUrl="~/Search.aspx" Text="Search"/>
+                        <asp:MenuItem NavigateUrl="~/Print.aspx?list=RoutingSheet" Text="Routing Sheet" Target="_blank" />
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">        
+    </div>
+    </form>
+</body>
+</html>
